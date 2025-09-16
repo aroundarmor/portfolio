@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourav Patel - Senior DevOps Engineer | Netflix-Inspired Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-code"></i>
+                <span>Sourav Patel</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#competencies" class="nav-link">Competencies</a></li>
+                <li><a href="#github-projects" class="nav-link">GitHub</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Sourav Patel</span>
+                </h1>
+                <h2 class="hero-subtitle">
+                    DevOps Engineer | AWS, GCP, CKA, & Terraform Certified
+                </h2>
+                <p class="hero-description">
+                    Senior DevOps Engineer transforming complex infrastructure challenges into scalable, cost-effective solutions. 
+                    Specializing in multi-cloud automation, achieving $50,000+ annual savings and 100% process automation. 
+                    Passionate about mentoring teams and delivering exceptional results across Payment Systems, Gaming Infrastructure, and Enterprise Architecture.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('projects')">
+                        <i class="fas fa-rocket"></i>
+                        View Projects
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-animation">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="btn-close"></span>
+                                <span class="btn-minimize"></span>
+                                <span class="btn-maximize"></span>
+                            </div>
+                            <span class="terminal-title">DevOps Terminal</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line">
+                                <span class="prompt">$</span>
+                                <span class="command">kubectl get pods</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="output">NAME                    READY   STATUS    RESTARTS   AGE</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="output">app-deployment-xyz     1/1     Running   0          2d</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">$</span>
+                                <span class="command typing">terraform apply</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I'm Sourav Patel, a Senior DevOps Engineer with a proven track record of transforming complex infrastructure challenges into scalable, cost-effective solutions. With 3+ years of progressive experience at Ollion, I've successfully delivered medium-scale projects across Payment Systems, Gaming Infrastructure, and Enterprise Architecture. My expertise spans multi-cloud environments (AWS, GCP), containerization (Kubernetes, Docker), and automation tools (Terraform, Jenkins, GitHub Actions). I'm passionate about mentoring teams, delivering tech talks to 30+ audiences, and achieving measurable business impact through innovative DevOps practices.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">$50000+</span>
+                            <span class="stat-label">Annual Savings</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">25+</span>
+                            <span class="stat-label">Clients Served</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Escalations</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Audience Reached</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>DevOps Engineer</h3>
+                        <p>Cloud Infrastructure Specialist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Infrastructure as Code</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Terraform</span>
+                        <span class="skill-item">Terragrunt</span>
+                        <span class="skill-item">CloudFormation</span>
+                        <span class="skill-item">Ansible</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> CI/CD & Automation</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Jenkins</span>
+                        <span class="skill-item">GitHub Actions</span>
+                        <span class="skill-item">CodeBuild</span>
+                        <span class="skill-item">CodePipeline</span>
+                        <span class="skill-item">CodeCommit</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fab fa-docker"></i> Containerization & Orchestration</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Kubernetes</span>
+                        <span class="skill-item">EKS</span>
+                        <span class="skill-item">GKE</span>
+                        <span class="skill-item">Helm</span>
+                        <span class="skill-item">Agones</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fab fa-aws"></i> AWS Services</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">EC2</span>
+                        <span class="skill-item">S3</span>
+                        <span class="skill-item">Lambda</span>
+                        <span class="skill-item">CloudWatch</span>
+                        <span class="skill-item">Systems Manager</span>
+                        <span class="skill-item">VPC</span>
+                        <span class="skill-item">IAM</span>
+                        <span class="skill-item">Route53</span>
+                        <span class="skill-item">CloudHSM</span>
+                        <span class="skill-item">Transit Gateway</span>
+                        <span class="skill-item">AWS Backup</span>
+                        <span class="skill-item">Elastic Beanstalk</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fab fa-google"></i> GCP Services</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Compute Engine</span>
+                        <span class="skill-item">Cloud Storage</span>
+                        <span class="skill-item">Cloud NAT</span>
+                        <span class="skill-item">Cloud DNS</span>
+                        <span class="skill-item">Cloud Routers</span>
+                        <span class="skill-item">Artifact Registry</span>
+                        <span class="skill-item">Certificate Manager</span>
+                        <span class="skill-item">OS Patch Management</span>
+                        <span class="skill-item">Managed Prometheus</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Monitoring & Logging</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Prometheus</span>
+                        <span class="skill-item">Grafana</span>
+                        <span class="skill-item">Datadog</span>
+                        <span class="skill-item">ELK Stack</span>
+                        <span class="skill-item">Fluentd</span>
+                        <span class="skill-item">Alertmanager</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-shield-alt"></i> Security & Compliance</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">SecurityHub</span>
+                        <span class="skill-item">TrendMicro DSM</span>
+                        <span class="skill-item">Checkpoint Firewall</span>
+                        <span class="skill-item">AWS WAF</span>
+                        <span class="skill-item">AWS Shield</span>
+                        <span class="skill-item">Regula</span>
+                        <span class="skill-item">Microsoft Sentinel</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming & Scripting</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">Bash</span>
+                        <span class="skill-item">YAML</span>
+                        <span class="skill-item">PowerShell</span>
+                        <span class="skill-item">Lambda Functions</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases & Storage</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">PostgreSQL</span>
+                        <span class="skill-item">MySQL</span>
+                        <span class="skill-item">Redis</span>
+                        <span class="skill-item">BigQuery</span>
+                        <span class="skill-item">RDS</span>
+                        <span class="skill-item">ElastiCache</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Competencies Section -->
+    <section id="competencies" class="competencies">
+        <div class="container">
+            <h2 class="section-title">Technical Competencies & Project Leadership</h2>
+            <div class="competencies-grid">
+                <div class="competency-card">
+                    <div class="competency-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="competency-content">
+                        <h3>Medium-Scale Project Delivery</h3>
+                        <p>Successfully delivered multiple medium-scale projects including Payment Systems, Gaming Infrastructure, Enterprise Architecture, and AWS Patch Manager automation, each with comprehensive documentation and measurable outcomes.</p>
+                        <ul class="competency-list">
+                            <li>Payment Systems: 10+ key implementations with 100% IDS functionality restoration</li>
+                            <li>Gaming Infrastructure: Complete environment setup with 80% faster application delivery</li>
+                            <li>Enterprise Architecture: 3-tier architecture with client satisfaction leading to Phase II</li>
+                            <li>AWS Patch Manager: $50,000 annual savings serving 25+ clients</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="competency-card">
+                    <div class="competency-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="competency-content">
+                        <h3>Solution Design & Problem Solving</h3>
+                        <p>Designed and implemented innovative solutions for complex infrastructure challenges across multiple cloud platforms and technologies.</p>
+                        <ul class="competency-list">
+                            <li>IPSec VPN tunnel monitoring automation (Payment Systems)</li>
+                            <li>Custom HPA for Agones gameservers (Gaming Infrastructure)</li>
+                            <li>Multi-cloud patching platform (AI Hackathon)</li>
+                            <li>GCP-Sentinel SIEM integration (Enterprise Client)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="competency-card">
+                    <div class="competency-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="competency-content">
+                        <h3>Team Leadership & Mentoring</h3>
+                        <p>Actively mentored DevOps I-III engineers, delivered tech talks to 30+ audiences, and collaborated across multiple projects without escalations.</p>
+                        <ul class="competency-list">
+                            <li>Mentored 5+ L1.5 engineers on Payment Systems, Enterprise, and Telecom projects</li>
+                            <li>Delivered 2 tech talks to 15+ cloud engineers</li>
+                            <li>Collaborated with 20+ team members across 6 projects</li>
+                            <li>Zero escalations in last 6 months across multiple projects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="competency-card">
+                    <div class="competency-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="competency-content">
+                        <h3>Organizational Contributions</h3>
+                        <p>Volunteered in DevOps initiatives, contributed to hiring processes, and developed organization-wide automation solutions.</p>
+                        <ul class="competency-list">
+                            <li>Contributed to hiring process for Cloud Engineer position</li>
+                            <li>Migrated Infraguard to cloud-native solution saving $8/month</li>
+                            <li>Developed IAC templates for cloud-native dashboards</li>
+                            <li>Participated in AI Hackathon with cross-platform solution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AWS Patch Manager Automation</h3>
+                        <p>Architected and implemented a revolutionary Terraform-based AWS Patch Manager solution that transformed manual patching processes across multiple regions. This cloud-native automation platform integrates seamlessly with GitHub workflows, enabling zero-touch deployments and comprehensive patch management. The solution has achieved 100% automation success rate, eliminating manual intervention entirely while serving 25+ enterprise clients with zero downtime incidents.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Systems Manager</span>
+                            <span class="tech-tag">Lambda</span>
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">S3</span>
+                            <span class="tech-tag">SNS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ollion.atlassian.net/wiki/spaces/MD/pages/3152150595/AWS+Patch+Manager+Setup" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Multi-Cloud Cost Optimization Framework</h3>
+                        <p>Designed and executed a comprehensive cost optimization strategy across AWS and GCP environments, delivering unprecedented savings through intelligent automation. Implemented dynamic GKE cluster scheduling that achieved 70% cost reduction during off-hours, developed S3 lifecycle policies resulting in 60% infrastructure savings, and created strategic resource optimization frameworks that generated $35,000 monthly savings for enterprise clients. This framework has become a standard practice across multiple projects.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">GKE</span>
+                            <span class="tech-tag">AWS Cost Explorer</span>
+                            <span class="tech-tag">S3 Lifecycle</span>
+                            <span class="tech-tag">AWS Athena</span>
+                            <span class="tech-tag">Trusted Advisor</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ollion.atlassian.net/wiki/spaces/CUSTOMER/pages/3938058364/Danone+Cost+Optimization+2024" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Cost Optimization Case Study
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>EKS Blue-Green Deployment & GitOps</h3>
+                        <p>Implemented zero-downtime EKS upgrades from v1.25 to v1.31 using blue-green deployment strategy. Built GitOps workflows with GitHub Actions, achieving 80% faster application delivery and 99% deployment success rate across multiple environments.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">EKS</span>
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">CodePipeline</span>
+                            <span class="tech-tag">CodeBuild</span>
+                            <span class="tech-tag">EFS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ollion.atlassian.net/wiki/spaces/CUSTOMER/pages/3520528399/NOKIA+EKS-Second-Cluster-Setup" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                EKS Implementation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Multi-Cloud Security & SIEM Integration</h3>
+                        <p>Implemented comprehensive security solutions including GCP audit logs integration with Microsoft Sentinel, AWS WAF configuration reducing security incidents by 80%, and end-to-end security guardrails using CloudWatch, EventBridge & Terraform achieving 90%+ compliance.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Microsoft Sentinel</span>
+                            <span class="tech-tag">AWS WAF</span>
+                            <span class="tech-tag">CloudWatch</span>
+                            <span class="tech-tag">EventBridge</span>
+                            <span class="tech-tag">SecurityHub</span>
+                            <span class="tech-tag">GCP Log Sink</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ollion.atlassian.net/wiki/spaces/CUSTOMER/pages/3903586314/Tatadigital+GCP+logs+to+Azure+Sentinel+Integeration" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                SIEM Integration
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Projects Section -->
+    <section id="github-projects" class="github-projects">
+        <div class="container">
+            <h2 class="section-title">GitHub Projects & Open Source</h2>
+            <div class="github-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>36</h3>
+                        <p>Repositories</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>3</h3>
+                        <p>Stars</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>1</h3>
+                        <p>Following</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>1</h3>
+                        <p>Follower</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="github-projects-grid">
+                <div class="github-project-card">
+                    <div class="project-header">
+                        <h3>Face-Detection-Attendance-System</h3>
+                        <div class="project-lang">
+                            <span class="lang-dot python"></span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                    <p>Automatic face detection system for student attendance tracking using computer vision and OpenCV.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/aroundarmor/Face-Detection-Attendance-System" target="_blank" class="github-link">
+                            <i class="fab fa-github"></i>
+                            View Repository
+                        </a>
+                    </div>
+                </div>
+
+                <div class="github-project-card">
+                    <div class="project-header">
+                        <h3>LetsUpgrade-AWS</h3>
+                        <div class="project-lang">
+                            <span class="lang-dot aws"></span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                    <p>Assignment submissions for AWS Essential program by LetsUpgrade, demonstrating cloud computing fundamentals.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/aroundarmor/LetsUpgrade-AWS" target="_blank" class="github-link">
+                            <i class="fab fa-github"></i>
+                            View Repository
+                        </a>
+                    </div>
+                </div>
+
+                <div class="github-project-card">
+                    <div class="project-header">
+                        <h3>python-projects</h3>
+                        <div class="project-lang">
+                            <span class="lang-dot python"></span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                    <p>Collection of beginner Python projects showcasing programming fundamentals and problem-solving skills.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/aroundarmor/python-projects" target="_blank" class="github-link">
+                            <i class="fab fa-github"></i>
+                            View Repository
+                        </a>
+                    </div>
+                </div>
+
+                <div class="github-project-card">
+                    <div class="project-header">
+                        <h3>jdotxt</h3>
+                        <div class="project-lang">
+                            <span class="lang-dot java"></span>
+                            <span>Java</span>
+                        </div>
+                    </div>
+                    <p>Cross-platform GUI application for the todo.txt file format, forked from open source project.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/aroundarmor/jdotxt" target="_blank" class="github-link">
+                            <i class="fab fa-github"></i>
+                            View Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="github-achievements">
+                <h3>GitHub Achievements</h3>
+                <div class="achievement-badges">
+                    <div class="achievement-badge">
+                        <i class="fas fa-bullseye"></i>
+                        <span>YOLO</span>
+                    </div>
+                    <div class="achievement-badge">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Pull Shark x2</span>
+                    </div>
+                    <div class="achievement-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Quickdraw</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>DevOps Engineer II</h3>
+                            <span class="timeline-company">Ollion | Remote</span>
+                            <span class="timeline-date">Jun 2022 - Present (3 years 4 months)</span>
+                        </div>
+                        <p>Leading comprehensive DevOps initiatives across multiple high-stakes projects, delivering innovative solutions that drive significant business impact and operational excellence.</p>
+                        <ul class="timeline-achievements">
+                            <li><strong>Monitoring & Observability:</strong> Set up NFS monitoring using Prometheus & Grafana, integrated AWS EKS metrics with Datadog for real-time alerting</li>
+                            <li><strong>Infrastructure Automation:</strong> Developed AWS-native patching solution using Terraform, managing S3, SNS, CloudWatch, and Lambda functions</li>
+                            <li><strong>Gaming Platform Support:</strong> Managed multi-cluster Kubernetes setup, optimized costs, automated CI/CD with Jenkins, reduced alert noise by 50%</li>
+                            <li><strong>Payment System Architecture:</strong> Architected and implemented fully functional payment system for core banking client using AWS</li>
+                            <li><strong>Operations Excellence:</strong> Automated IPSec tunnel monitoring, managed SSL certificates, enhanced TrendMicro DSM operations</li>
+                            <li><strong>Cost Optimization:</strong> Achieved substantial savings through infrastructure optimization and automation initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Cloud Support Engineer</h3>
+                            <span class="timeline-company">Meditab Software India Pvt. Ltd. | Ahmedabad, India</span>
+                            <span class="timeline-date">Jun 2021 - Jun 2022 (1 year 1 month)</span>
+                        </div>
+                        <p>Managed cloud infrastructure for US Healthcare clients, ensuring high availability, security compliance, and operational excellence.</p>
+                        <ul class="timeline-achievements">
+                            <li><strong>SaaS Application Hosting:</strong> Utilized EC2, VPC, Load-Balancers, CloudWatch, SNS and Route53 to host and operate SaaS applications</li>
+                            <li><strong>Infrastructure Provisioning:</strong> Provisioned AWS eventbridge rules with SNS topics as trigger mechanism for threshold-based email notifications using Terraform</li>
+                            <li><strong>VM Management:</strong> Provisioned and managed VMs on AWS and Nutanix Cluster using Terraform</li>
+                            <li><strong>High Availability:</strong> Provisioned EC2 Windows server instances and managed them to provide 99.9% uptime</li>
+                            <li><strong>Network Security:</strong> Configured Site-to-Site VPN for secure connectivity</li>
+                            <li><strong>Support Excellence:</strong> Provided on-call support and performed peripheral testing to ensure devices work with remote environment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Service Desk Analyst</h3>
+                            <span class="timeline-company">Meditab Software India Pvt. Ltd. | Ahmedabad, India</span>
+                            <span class="timeline-date">Apr 2021 - Jun 2021 (3 months)</span>
+                        </div>
+                        <p>Provided comprehensive IT support and system administration across Windows and Linux environments, ensuring optimal system performance and user satisfaction.</p>
+                        <ul class="timeline-achievements">
+                            <li><strong>System Administration:</strong> Configured and managed Windows and Linux systems, troubleshooting network and endpoint connectivity issues</li>
+                            <li><strong>Ticket Management:</strong> Handled tickets within SLA using Kaseya BMS, VSA RMM Tool, Atera, Connectwise Manage and Automate</li>
+                            <li><strong>Tool Migration:</strong> Migrated and adapted through different RMM tools and ticketing systems</li>
+                            <li><strong>Active Directory:</strong> Performed Windows AD Administration and inventory management using Snipe-IT</li>
+                            <li><strong>System Troubleshooting:</strong> Resolved system-level issues and ensured endpoint connectivity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Contributor</h3>
+                            <span class="timeline-company">GitHub | Remote</span>
+                            <span class="timeline-date">Sep 2020 - Apr 2021 (8 months)</span>
+                        </div>
+                        <p>Active open-source contributor participating in Hacktoberfest and contributing to multiple repositories, demonstrating commitment to the developer community.</p>
+                        <ul class="timeline-achievements">
+                            <li><strong>Hacktoberfest 2020:</strong> Successfully contributed to 5+ repositories with all pull requests approved within 14 days</li>
+                            <li><strong>Open Source Recognition:</strong> Received official recognition and limited edition swag from Digital Ocean</li>
+                            <li><strong>Community Engagement:</strong> Learned collaborative development practices and contributed to meaningful projects</li>
+                            <li><strong>Skill Development:</strong> Enhanced coding skills and understanding of open-source development workflows</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <img src="icons/aws-professional.png" alt="AWS Solutions Architect Professional" />
+                    </div>
+                    <div class="cert-content">
+                        <h3>AWS Solutions Architect - Professional</h3>
+                        <p>Advanced certification demonstrating expertise in designing distributed systems on AWS</p>
+                        <span class="cert-date">Mar 2025 - Mar 2028</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <img src="icons/gcp-associate.png" alt="Google Associate Cloud Engineer" />
+                    </div>
+                    <div class="cert-content">
+                        <h3>Google Associate Cloud Engineer</h3>
+                        <p>Validated skills in deploying and managing applications on Google Cloud Platform</p>
+                        <span class="cert-date">Dec 2024 - Dec 2027</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <img src="icons/cka.png" alt="Certified Kubernetes Administrator" />
+                    </div>
+                    <div class="cert-content">
+                        <h3>Certified Kubernetes Administrator (CKA)</h3>
+                        <p>Demonstrated ability to perform the responsibilities of a Kubernetes administrator</p>
+                        <span class="cert-date">Nov 2024 - Nov 2026</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="cert-content">
+                        <h3>"The Zinger" Award - Ollion</h3>
+                        <p>Recognized for proactively supporting team goals and fostering continuous improvement</p>
+                        <span class="cert-date">2024</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <img src="icons/terraform-associate.png" alt="HashiCorp Certified Terraform Associate" />
+                    </div>
+                    <div class="cert-content">
+                        <h3>Hashicorp Certified Terraform Associate (003)</h3>
+                        <p>Infrastructure as Code expertise with HashiCorp Terraform</p>
+                        <span class="cert-date">Dec 2023 - Jul 2025</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <img src="icons/aws-associate.png" alt="AWS Solutions Architect Associate" />
+                    </div>
+                    <div class="cert-content">
+                        <h3>AWS Solutions Architect - Associate</h3>
+                        <p>Foundational AWS cloud architecture and design principles</p>
+                        <span class="cert-date">Nov 2021 - Nov 2024</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="cert-content">
+                        <h3>Hacktoberfest 2020</h3>
+                        <p>Successfully contributed to 5+ open-source repositories and received official recognition</p>
+                        <span class="cert-date">2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title">Achievements & Recognition</h2>
+            <div class="achievements-grid">
+                <div class="achievement-category">
+                    <h3><i class="fas fa-trophy"></i> Professional Awards</h3>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>"The Zinger" Award - Ollion</h4>
+                                <p>Recognized for proactively supporting team goals, encouraging collaboration, and fostering a culture of continuous improvement and motivation.</p>
+                                <span class="achievement-date">2024</span>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Cloud Migration Excellence</h4>
+                                <p>Recognized for leading a successful cloud-native migration that significantly improved patching efficiency and enabled substantial annual cost savings.</p>
+                                <span class="achievement-date">2023</span>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Automation Excellence - CloudCover</h4>
+                                <p>Recognized for automating project workflows and reducing manual effort, exemplifying the company's "Automate Everything" value.</p>
+                                <span class="achievement-date">2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-category">
+                    <h3><i class="fas fa-code-branch"></i> Open Source Contributions</h3>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Hacktoberfest 2020</h4>
+                                <p>Completed Hacktoberfest by submitting and successfully merging 5+ pull requests to open-source projects, earning official recognition and rewards.</p>
+                                <span class="achievement-date">2020</span>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>GitHub Contributor</h4>
+                                <p>Active contributor to multiple open-source repositories, with all pull requests approved within 14 days during Hacktoberfest.</p>
+                                <span class="achievement-date">2020-2021</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-category">
+                    <h3><i class="fas fa-laptop-code"></i> Technical Competitions</h3>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Organizational Hackathon 2024</h4>
+                                <p>Participated in organizational hackathon and built a One-click Patching solution, showcasing innovation in automation.</p>
+                                <span class="achievement-date">2024</span>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>Innovation Challenge</h4>
+                                <p>Contributed to innovative solutions that reduced deployment time by 80% and achieved 100% automation in patching processes.</p>
+                                <span class="achievement-date">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-category impact-metrics-horizontal">
+                    <h3><i class="fas fa-chart-line"></i> Impact Metrics</h3>
+                    <div class="achievement-list-horizontal">
+                        <div class="achievement-item-horizontal">
+                            <div class="achievement-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>100% Automation</h4>
+                                <p>Complete automation of patching processes across AWS regions</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item-horizontal">
+                            <div class="achievement-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>$50,000 Savings</h4>
+                                <p>Saved in third-party vendor costs through automation</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item-horizontal">
+                            <div class="achievement-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>80% Faster</h4>
+                                <p>Reduced application rollout time through GitOps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Ready to Transform Your Infrastructure?</h3>
+                    <p>I'm passionate about solving complex DevOps challenges and delivering measurable business impact. Whether you need help with multi-cloud automation, cost optimization, or scaling your infrastructure, let's discuss how I can help drive your organization's success. I'm always excited to explore new opportunities and collaborate on innovative projects.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>work.1sourav@gmail.com</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/aroundarmor/" target="_blank">linkedin.com/in/aroundarmor</a>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/aroundarmor" target="_blank">github.com/aroundarmor</a>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>+91-70000-70580</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-code"></i>
+                    <span>Sourav Patel</span>
+                    <p class="footer-tagline">Transforming Infrastructure Challenges into Scalable Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#competencies">Competencies</a>
+                    <a href="#github-projects">GitHub</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#certifications">Certifications</a>
+                    <a href="#achievements">Achievements</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DevOps Portfolio. Built with passion for infrastructure excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
