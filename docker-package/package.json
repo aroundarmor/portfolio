@@ -1,0 +1,45 @@
+{
+  "name": "sourav-portfolio",
+  "version": "1.0.0",
+  "description": "Senior DevOps Engineer Portfolio - Netflix Inspired Design",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building portfolio...' && echo 'Build complete!'",
+    "start": "echo 'Portfolio is ready to serve!'",
+    "docker:build": "docker build -f docker-package/Dockerfile -t sourav-portfolio .",
+    "docker:run": "docker run -p 8080:8080 --name portfolio-container sourav-portfolio",
+    "docker:stop": "docker stop portfolio-container && docker rm portfolio-container",
+    "docker:compose:up": "cd docker-package && docker-compose up -d",
+    "docker:compose:down": "cd docker-package && docker-compose down",
+    "docker:compose:logs": "cd docker-package && docker-compose logs -f",
+    "docker:compose:build": "cd docker-package && docker-compose build --no-cache",
+    "docker:tag": "docker tag sourav-portfolio aroundarmor/portfolio:latest",
+    "docker:push": "docker push aroundarmor/portfolio:latest",
+    "docker:build:push": "npm run docker:build && npm run docker:tag && npm run docker:push",
+    "deploy:local": "npm run docker:compose:up",
+    "deploy:production": "cd docker-package && docker-compose --profile production up -d",
+    "health:check": "curl -f http://localhost:8080/health || exit 1",
+    "clean": "docker system prune -f && docker volume prune -f"
+  },
+  "keywords": [
+    "portfolio",
+    "devops",
+    "docker",
+    "nginx",
+    "static-site",
+    "netflix-inspired",
+    "responsive"
+  ],
+  "author": "Sourav Patel <work.1sourav@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aroundarmor/portfolio-1.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "docker": ">=20.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
