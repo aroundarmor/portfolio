@@ -1,0 +1,173 @@
+name: Build and Deploy Docker Image
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: false
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+        - development
+      force_push:
+        description: 'Force push to Docker Hub (even on PR)'
+        required: false
+        default: false
+        type: boolean
+      skip_security_scan:
+        description: 'Skip Trivy security scanning'
+        required: false
+        default: false
+        type: boolean
+      custom_tag:
+        description: 'Custom tag for Docker image (optional)'
+        required: false
+        type: string
+
+env:
+  DOCKER_IMAGE: aroundarmor/portfolio
+  DOCKERFILE_PATH: docker-package/Dockerfile
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Log in to Docker Hub
+      if: github.event_name != 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.force_push == true)
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_IMAGE }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+          type=raw,value={{date 'YYYYMMDD-HHmmss'}}
+          type=raw,value=${{ inputs.custom_tag }},enable=${{ inputs.custom_tag != '' }}
+          type=raw,value=${{ inputs.environment }}-latest,enable=${{ github.event_name == 'workflow_dispatch' }}
+          
+    - name: Build and push Docker image
+      id: build
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ${{ env.DOCKERFILE_PATH }}
+        push: ${{ github.event_name != 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.force_push == true) }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        platforms: linux/amd64,linux/arm64
+        
+    - name: Run Trivy vulnerability scanner
+      if: inputs.skip_security_scan != true
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.DOCKER_IMAGE }}:latest
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        cache-dir: '.trivycache'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      if: always() && inputs.skip_security_scan != true
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: 'trivy-results.sarif'
+        
+    - name: Run Trivy vulnerability scanner (table format)
+      if: inputs.skip_security_scan != true
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.DOCKER_IMAGE }}:latest
+        format: 'table'
+        cache-dir: '.trivycache'
+        
+    - name: Image digest
+      run: echo ${{ steps.build.outputs.digest }}
+      
+    - name: Notify deployment success
+      if: success() && (github.event_name != 'pull_request' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.force_push == true)
+      run: |
+        echo "🚀 Successfully deployed Docker image to Docker Hub!"
+        echo "📦 Image: ${{ env.DOCKER_IMAGE }}"
+        echo "🏷️  Tags: ${{ steps.meta.outputs.tags }}"
+        echo "🔗 View on Docker Hub: https://hub.docker.com/r/${{ env.DOCKER_IMAGE }}"
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          echo "🎯 Manual trigger with environment: ${{ inputs.environment }}"
+          if [ "${{ inputs.custom_tag }}" != "" ]; then
+            echo "🏷️  Custom tag: ${{ inputs.custom_tag }}"
+          fi
+        fi
+        
+    - name: Notify pipeline failure
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "❌ Pipeline Failed: ${{ github.repository }} - ${{ github.ref_name }}"
+        to: ${{ secrets.NOTIFICATION_EMAIL }}
+        from: ${{ secrets.EMAIL_USERNAME }}
+        body: |
+          Pipeline failed for repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}
+          Author: ${{ github.actor }}
+          Workflow: ${{ github.workflow }}
+          Run ID: ${{ github.run_id }}
+          
+          View the failed run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          
+          Failed at step: ${{ job.status }}
+          
+          Please check the workflow logs for more details.
+          
+    - name: Notify pipeline success (optional)
+      if: success() && (github.event_name != 'pull_request' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.force_push == true)
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "✅ Pipeline Success: ${{ github.repository }} - ${{ github.ref_name }}${{ github.event_name == 'workflow_dispatch' && format(' (Manual: {0})', inputs.environment) || '' }}"
+        to: ${{ secrets.NOTIFICATION_EMAIL }}
+        from: ${{ secrets.EMAIL_USERNAME }}
+        body: |
+          Pipeline completed successfully for repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}
+          Author: ${{ github.actor }}
+          Workflow: ${{ github.workflow }}
+          Run ID: ${{ github.run_id }}
+          Trigger: ${{ github.event_name }}${{ github.event_name == 'workflow_dispatch' && format(' (Environment: {0})', inputs.environment) || '' }}
+          
+          🚀 Docker image deployed to Docker Hub: ${{ env.DOCKER_IMAGE }}
+          🏷️ Tags: ${{ steps.meta.outputs.tags }}
+          ${{ github.event_name == 'workflow_dispatch' && inputs.custom_tag != '' && format('🏷️ Custom Tag: {0}', inputs.custom_tag) || '' }}
+          
+          View the successful run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          View on Docker Hub: https://hub.docker.com/r/${{ env.DOCKER_IMAGE }}
