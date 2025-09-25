@@ -35,6 +35,12 @@ env:
   DOCKER_IMAGE: aroundarmor/portfolio
   DOCKERFILE_PATH: docker-package/Dockerfile
 
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+  deployments: write
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
