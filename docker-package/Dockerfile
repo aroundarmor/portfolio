@@ -1,9 +1,9 @@
 # Multi-stage Docker build for Portfolio
 # Stage 1: Build stage - Prepare static assets
-FROM alpine:3.18 AS builder
+FROM alpine:3.19 AS builder
 
-# Install tools for optimization
-RUN apk add --no-cache findutils sed
+# Install tools for optimization and update packages
+RUN apk update && apk upgrade && apk add --no-cache findutils sed
 
 # Set working directory
 WORKDIR /app
@@ -19,8 +19,8 @@ RUN find docs/ -name "*.html" -exec sed -i 's/  */ /g' {} \; && \
 # Stage 2: Production stage - Nginx server
 FROM nginx:1.25-alpine AS production
 
-# Install curl for health checks
-RUN apk add --no-cache curl
+# Update packages and install curl for health checks
+RUN apk update && apk upgrade && apk add --no-cache curl
 
 # Copy custom nginx configuration
 COPY docker-package/nginx.conf /etc/nginx/nginx.conf
