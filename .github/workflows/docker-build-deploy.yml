@@ -120,54 +120,89 @@ jobs:
           fi
         fi
         
-    - name: Notify pipeline failure
-      if: failure()
-      uses: dawidd6/action-send-mail@v3
+    - name: Create deployment status
+      if: always()
+      uses: actions/github-script@v7
       with:
-        server_address: smtp.gmail.com
-        server_port: 587
-        username: ${{ secrets.EMAIL_USERNAME }}
-        password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: "❌ Pipeline Failed: ${{ github.repository }} - ${{ github.ref_name }}"
-        to: ${{ secrets.NOTIFICATION_EMAIL }}
-        from: ${{ secrets.EMAIL_USERNAME }}
-        body: |
-          Pipeline failed for repository: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
-          Commit: ${{ github.sha }}
-          Author: ${{ github.actor }}
-          Workflow: ${{ github.workflow }}
-          Run ID: ${{ github.run_id }}
+        script: |
+          const { owner, repo } = context.repo;
+          const { sha } = context;
+          const { eventName, ref, actor, workflow, runId } = context;
+          const { inputs } = context.payload;
           
-          View the failed run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          const status = '${{ job.status }}';
+          const isSuccess = status === 'success';
+          const isFailure = status === 'failure';
           
-          Failed at step: ${{ job.status }}
+          // Create deployment status
+          const deployment = await github.rest.repos.createDeployment({
+            owner,
+            repo,
+            ref: sha,
+            environment: inputs?.environment || 'production',
+            description: `Docker build and deploy - ${workflow}`,
+            auto_merge: false,
+            required_contexts: []
+          });
           
-          Please check the workflow logs for more details.
+          // Create deployment status
+          await github.rest.repos.createDeploymentStatus({
+            owner,
+            repo,
+            deployment_id: deployment.data.id,
+            state: isSuccess ? 'success' : isFailure ? 'failure' : 'pending',
+            description: isSuccess 
+              ? `✅ Docker image deployed successfully to Docker Hub`
+              : isFailure 
+                ? `❌ Docker build/deploy failed`
+                : `⏳ Docker build in progress`,
+            environment_url: isSuccess ? `https://hub.docker.com/r/${{ env.DOCKER_IMAGE }}` : undefined
+          });
           
-    - name: Notify pipeline success (optional)
-      if: success() && (github.event_name != 'pull_request' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.force_push == true)
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 587
-        username: ${{ secrets.EMAIL_USERNAME }}
-        password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: "✅ Pipeline Success: ${{ github.repository }} - ${{ github.ref_name }}${{ github.event_name == 'workflow_dispatch' && format(' (Manual: {0})', inputs.environment) || '' }}"
-        to: ${{ secrets.NOTIFICATION_EMAIL }}
-        from: ${{ secrets.EMAIL_USERNAME }}
-        body: |
-          Pipeline completed successfully for repository: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
-          Commit: ${{ github.sha }}
-          Author: ${{ github.actor }}
-          Workflow: ${{ github.workflow }}
-          Run ID: ${{ github.run_id }}
-          Trigger: ${{ github.event_name }}${{ github.event_name == 'workflow_dispatch' && format(' (Environment: {0})', inputs.environment) || '' }}
-          
-          🚀 Docker image deployed to Docker Hub: ${{ env.DOCKER_IMAGE }}
-          🏷️ Tags: ${{ steps.meta.outputs.tags }}
-          ${{ github.event_name == 'workflow_dispatch' && inputs.custom_tag != '' && format('🏷️ Custom Tag: {0}', inputs.custom_tag) || '' }}
-          
-          View the successful run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          View on Docker Hub: https://hub.docker.com/r/${{ env.DOCKER_IMAGE }}
+          // Add comment to commit for detailed info
+          if (isSuccess || isFailure) {
+            const comment = isSuccess 
+              ? `## ✅ Deployment Successful
+              
+              **Repository**: ${owner}/${repo}
+              **Branch**: ${ref.replace('refs/heads/', '')}
+              **Commit**: ${sha}
+              **Author**: ${actor}
+              **Workflow**: ${workflow}
+              **Trigger**: ${eventName}${inputs?.environment ? ` (Environment: ${inputs.environment})` : ''}
+              
+              🚀 **Docker Image**: ${{ env.DOCKER_IMAGE }}
+              🏷️ **Tags**: ${{ steps.meta.outputs.tags }}
+              ${inputs?.custom_tag ? `🏷️ **Custom Tag**: ${inputs.custom_tag}` : ''}
+              
+              **Links**:
+              - [View Workflow Run](https://github.com/${owner}/${repo}/actions/runs/${runId})
+              - [View on Docker Hub](https://hub.docker.com/r/${{ env.DOCKER_IMAGE }})
+              `
+              : `## ❌ Deployment Failed
+              
+              **Repository**: ${owner}/${repo}
+              **Branch**: ${ref.replace('refs/heads/', '')}
+              **Commit**: ${sha}
+              **Author**: ${actor}
+              **Workflow**: ${workflow}
+              **Trigger**: ${eventName}
+              
+              **Error**: Pipeline failed at step: ${status}
+              
+              **Links**:
+              - [View Failed Run](https://github.com/${owner}/${repo}/actions/runs/${runId})
+              - [Check Logs](https://github.com/${owner}/${repo}/actions/runs/${runId})
+              `;
+              
+            try {
+              await github.rest.repos.createCommitComment({
+                owner,
+                repo,
+                commit_sha: sha,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not create commit comment:', error.message);
+            }
+          }
